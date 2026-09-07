@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Naturwissenschaften</title>
+    <!-- Wir nutzen Google Fonts für eine schöne, moderne Schriftart -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <!-- FontAwesome für schicke Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <style>
+        /* Grundlegende Einstellungen */
+        :root {
+            --bg-color: #0f172a;
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            --math-color: #3b82f6;
+            --physics-color: #8b5cf6;
+            --chemistry-color: #10b981;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+        }
+
+        /* Kopfbereich (Hero Section) */
+        header {
+            text-align: center;
+            margin-top: 4rem;
+            margin-bottom: 4rem;
+            padding: 0 20px;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            background: linear-gradient(to right, #60a5fa, #a78bfa, #34d399);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.2rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Grid für die Fächer-Karten */
+        .subjects-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            width: 100%;
+            max-width: 1100px;
+            padding: 0 20px;
+            margin-bottom: 4rem;
+        }
+
+        /* Design der einzelnen Karten */
+        .card {
+            background: rgba(30, 41, 59, 0.7);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            backdrop-filter: blur(10px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card.math:hover { box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2); }
+        .card.physics:hover { box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2); }
+        .card.chemistry:hover { box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
+
+        .icon-wrapper {
+            font-size: 4rem;
+            margin-bottom: 20px;
+        }
+
+        .card.math .icon-wrapper { color: var(--math-color); }
+        .card.physics .icon-wrapper { color: var(--physics-color); }
+        .card.chemistry .icon-wrapper { color: var(--chemistry-color); }
+
+        .card h2 {
+            font-size: 1.8rem;
+            margin-bottom: 15px;
+        }
+
+        .card p {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 30px;
+            line-height: 1.6;
+        }
+
+        /* Buttons */
+        .btn {
+            background-color: transparent;
+            color: white;
+            border: 2px solid;
+            padding: 12px 25px;
+            border-radius: 30px;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        .card.math .btn { border-color: var(--math-color); }
+        .card.math .btn:hover { background-color: var(--math-color); }
+        
+        .card.physics .btn { border-color: var(--physics-color); }
+        .card.physics .btn:hover { background-color: var(--physics-color); }
+        
+        .card.chemistry .btn { border-color: var(--chemistry-color); }
+        .card.chemistry .btn:hover { background-color: var(--chemistry-color); }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>Wissen Kompakt</h1>
+        <p>Dein digitales Begleitskript für die Schule. Wähle dein Fach aus, um zu den Lerninhalten und Übungsaufgaben zu gelangen.</p>
+    </header>
+
+    <div class="subjects-container">
+        <!-- MATHE KARTE -->
+        <div class="card math">
+            <div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-calculator"></i>
+                </div>
+                <h2>Mathematik</h2>
+                <p>Grundlagen für die Analysis, Lineare Algebra, Geometrie und Wahrscheinlichkeitsrechnung.</p>
+            </div>
+            <!-- Direkte Weiterleitung ohne Passwort -->
+            <button class="btn" onclick="window.location.href='mathe.html'">Zum Skript</button>
+        </div>
+
+        <!-- PHYSIK KARTE -->
+        <div class="card physics">
+            <div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-atom"></i>
+                </div>
+                <h2>Physik</h2>
+                <p>Mechanik, Elektrodynamik, Thermodynamik, Atom- und Kernphysik.</p>
+            </div>
+            <!-- Direkte Weiterleitung ohne Passwort -->
+            <button class="btn" onclick="window.location.href='physik.html'">Zum Skript</button>
+        </div>
+
+        <!-- CHEMIE KARTE -->
+        <div class="card chemistry">
+            <div>
+                <div class="icon-wrapper">
+                    <i class="fa-solid fa-flask"></i>
+                </div>
+                <h2>Chemie</h2>
+                <p>Allgemeine und Anorganische Chemie, Organische Chemie, chemische Thermodynamik.</p>
+            </div>
+            <!-- Direkte Weiterleitung ohne Passwort -->
+            <button class="btn" onclick="window.location.href='chemie.html'">Zum Skript</button>
+        </div>
+    </div>
+
+</body>
+</html>
