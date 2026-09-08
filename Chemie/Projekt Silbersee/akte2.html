@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt: Havarie am Silbersee | Akte 2</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content-container {
+            width: 100%;
+            max-width: 850px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .nav-link {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .case-header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #1a2332 100%);
+            border: 1px solid #2a3b55;
+            border-left: 5px solid #3b82f6;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .tag {
+            background-color: #3b82f6;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #60a5fa;
+            font-size: 2.2rem;
+            margin: 5px 0 10px 0;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        .step-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .step-card h2 {
+            color: #60a5fa;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .step-card p, .step-card li {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+        .reaction-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15rem;
+            color: #38bdf8;
+            text-align: center;
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+        .info-box {
+            background: rgba(96, 165, 250, 0.08);
+            border-left: 4px solid #60a5fa;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .interactive-frame {
+            width: 100%;
+            height: 540px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 20px 0;
+            background: #000;
+        }
+        .lock-box {
+            background: #182234;
+            border: 1px dashed #3b82f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .lock-box h3 {
+            margin-top: 0;
+            color: #93c5fd;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .form-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #121212;
+            color: white;
+            font-family: inherit;
+        }
+        .submit-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+        .feedback {
+            margin-top: 12px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.err { color: #f87171; display: block; }
+        .feedback.ok { color: #34d399; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+        <!-- Navigation -->
+        <div class="nav-links">
+            <a href="index.html" class="nav-link">← Zurück zu Akte 1</a>
+            <a href="../chemie-anorganik.html" class="nav-link">Zur Themenübersicht</a>
+        </div>
+
+        <!-- Fall-Kopfbereich -->
+        <div class="case-header">
+            <span class="tag">LABORBERICHT • ANALYTIK</span>
+            <h1>Projekt: Havarie am Silbersee</h1>
+            <p class="subtitle">Ermittlungsakte 2: Der Blick ins Unsichtbare (Teilchenebene & Brønsted-Theorie)</p>
+        </div>
+
+        <!-- 1. Der Leitfähigkeitstest -->
+        <div class="step-card">
+            <h2>1. Das Rätsel der Leitfähigkeit</h2>
+            <p>
+                Die Probe aus dem leckgeschlagenen Fass wurde ins Labor gebracht. Dort wurde ein Stromkreis mit einer Glühbirne angeschlossen:
+            </p>
+            <ul>
+                <li><strong>Reines Wasser:</strong> Die Lampe bleibt dunkel (kein Stromfluss).</li>
+                <li><strong>Gasförmiger Chlorwasserstoff (reines HCl):</strong> Leitet keinen Strom.</li>
+                <li><strong>Die Unfall-Probe (HCl gelöst in Wasser):</strong> Die Lampe leuchtet extrem hell!</li>
+            </ul>
+            <div class="info-box">
+                <strong>Schlussfolgerung der Kriminaltechnik:</strong><br>
+                Elektrischer Strom kann in Flüssigkeiten nur fließen, wenn <strong>frei bewegliche, elektrisch geladene Teilchen (Ionen)</strong> vorhanden sind. 
+                Das bedeutet: Wenn gasförmiges HCl mit Wasser in Kontakt kommt, zerfällt es nicht einfach, sondern reagiert chemisch!
+            </div>
+        </div>
+
+        <!-- 2. Simulation auf Teilchenebene -->
+        <div class="step-card">
+            <h2>2. Molekül-Simulation: Was passiert im Wasser?</h2>
+            <p>
+                Nutze die Simulation, um die Teilchenebene sichtbar zu machen:
+            </p>
+            <ol>
+                <li>Wähle oben den Reiter <strong>Einführung</strong>.</li>
+                <li>Wähle links als Lösung <strong>Starke Säure (HA)</strong> aus.</li>
+                <li>Schalte unter den Ansichtsoptionen auf <strong>Moleküle</strong> oder klicke auf die Lupe.</li>
+                <li>Tauche den Leitfähigkeitsprüfer (Batterie mit Lampe) in das Becherglas.</li>
+            </ol>
+
+            <!-- Eingebettete HTML5-Simulation "Säure-Base-Lösungen" -->
+            <iframe 
+                class="interactive-frame" 
+                src="https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_all.html?locale=de" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- 3. Die Erklärung nach Brønsted -->
+        <div class="step-card">
+            <h2>3. Der Protonenübergang (Brønsted-Konzept)</h2>
+            <p>
+                Der dänische Chemiker Johannes Brønsted fand heraus, was genau passiert:
+            </p>
+            <p>
+                Das Chlorwasserstoff-Molekül gibt sein positiv geladenes Wasserstoff-Kernteilchen – ein <strong>Proton (H⁺)</strong> – ab. 
+                Säuren sind daher <strong>Protonendonatoren</strong> (Protonenspender).
+            </p>
+            <p>
+                Das freie Proton kann jedoch nicht alleine im Wasser schwimmen. Es wird sofort von einem Wassermolekül (H₂O) eingefangen:
+            </p>
+
+            <div class="reaction-box">
+                HCl + H₂O &nbsp;→&nbsp; Cl⁻ + H₃O⁺
+            </div>
+
+            <p>
+                Das entstandene <strong>Cl⁻</strong> ist das Chlorid-Ion (der Säurerest).<br>
+                Das <strong>H₃O⁺</strong> ist der eigentliche Verursacher der sauren Wirkung und sorgt für den roten Farbumschlag!
+            </p>
+
+            <div class="lock-box">
+                <h3>Ermittler-Check für Akte 3:</h3>
+                <p>
+                    Wie heißt das positiv geladene Ion <strong>H₃O⁺</strong> mit chemischem Fachnamen? 
+                    <br><small style="color: #94a3b8;">(Tipp: Es beginnt mit "Ox..." oder "Hydr...")</small>
+                </p>
+                <div class="input-group">
+                    <input type="text" id="answer2" class="form-input" placeholder="Fachbegriff eingeben...">
+                    <button class="submit-btn" onclick="checkAnswer2()">Akte 3 entsperren</button>
+                </div>
+                <div id="feedback2" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer2() {
+            const val = document.getElementById('answer2').value.trim().toLowerCase();
+            const fb = document.getElementById('feedback2');
+
+            // Akzeptiert Oxonium, Oxonium-Ion, Oxoniumion, Hydronium, etc.
+            const validTerms = [
+                'oxonium', 'oxoniumion', 'oxonium-ion', 
+                'hydronium', 'hydroniumion', 'hydronium-ion',
+                'hydroxonium'
+            ];
+
+            if (validTerms.includes(val)) {
+                fb.className = 'feedback ok';
+                fb.innerHTML = '✓ Exakt! Das H₃O⁺-Ion (Oxonium-Ion) wurde identifiziert.<br>Lade Akte 3 (Laugen und Gegenspieler)...';
+                
+                setTimeout(() => {
+                    window.location.href = 'akte3.html';
+                }, 1300);
+            } else {
+                fb.className = 'feedback err';
+                fb.innerText = '✗ Noch nicht ganz. Lies noch einmal im Text oben nach, wie das H₃O⁺-Teilchen heißt!';
+            }
+        }
+    </script>
+</body>
+</html>
