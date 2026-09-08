@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt: Havarie am Silbersee | Akte 1</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content-container {
+            width: 100%;
+            max-width: 850px;
+        }
+        .back-link {
+            color: #60a5fa;
+            text-decoration: none;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+        .back-link:hover {
+            text-decoration: underline;
+        }
+        .case-header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #1a2332 100%);
+            border: 1px solid #2a3b55;
+            border-left: 5px solid #ef4444;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .tag {
+            background-color: #ef4444;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #60a5fa;
+            font-size: 2.2rem;
+            margin: 5px 0 10px 0;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        .step-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .step-card h2 {
+            color: #60a5fa;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .step-card p, .step-card li {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+        .info-box {
+            background: rgba(96, 165, 250, 0.08);
+            border-left: 4px solid #60a5fa;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .interactive-frame {
+            width: 100%;
+            height: 520px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 20px 0;
+            background: #000;
+        }
+        .lock-box {
+            background: #182234;
+            border: 1px dashed #3b82f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .lock-box h3 {
+            margin-top: 0;
+            color: #93c5fd;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .form-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #121212;
+            color: white;
+            font-family: inherit;
+        }
+        .submit-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+        .feedback {
+            margin-top: 12px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.err { color: #f87171; display: block; }
+        .feedback.ok { color: #34d399; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+        <!-- Zurück zur übergeordneten Anorganik-Seite -->
+        <a href="../chemie-anorganik.html" class="back-link">← Zurück zur Anorganischen Chemie</a>
+
+        <!-- Fall-Kopfbereich -->
+        <div class="case-header">
+            <span class="tag">EILSACHE • UMWELTAMT</span>
+            <h1>Projekt: Havarie am Silbersee</h1>
+            <p class="subtitle">Ermittlungsakte 1: Der Fundort & erste Messungen</p>
+        </div>
+
+        <!-- 1. Der Einsatzbericht -->
+        <div class="step-card">
+            <h2>1. Die Alarmierung</h2>
+            <p>
+                Heute Nacht um 03:14 Uhr ist im Naturschutzgebiet Silbersee ein Transporter von der Fahrbahn abgekommen.
+                Zwei Fässer sind leckgeschlagen. Eine farblose Flüssigkeit läuft über den Boden Richtung Seeufer. 
+                Die Baumrinde in unmittelbarer Nähe wirft Blasen und verfärbt sich weiß-braun.
+            </p>
+            <div class="info-box">
+                <strong>Sicherheitswarnung der Einsatzkräfte:</strong><br>
+                Niemals unbekannte Flüssigkeiten mit den Fingern berühren oder daran riechen! 
+                Die Feuerwehr hat mit einer Teleskopstange einen <strong>Universalindikatorstreifen</strong> in die Flüssigkeit gehalten.
+                Ergebnis: <strong>Der Streifen färbt sich tiefrot.</strong>
+            </div>
+        </div>
+
+        <!-- 2. Der Simulator -->
+        <div class="step-card">
+            <h2>2. Das Vergleichslabor (pH-Skala)</h2>
+            <p>
+                Was bedeutet die Rotfärbung? Nutze die interaktive Laborsimulation unten, um herauszufinden, was Indikatoren anzeigen und wie die Skala aufgebaut ist:
+            </p>
+            <ol>
+                <li>Wähle oben links im Dropdown-Menü verschiedene Flüssigkeiten aus (z. B. <em>Batteriesäure</em>, <em>Kaffee</em>, <em>Wasser</em>, <em>Seife</em>, <em>Rohrreiniger</em>).</li>
+                <li>Ziehe den Sensor (die Messspitze) in den Behälter, um den pH-Wert abzulesen.</li>
+                <li>Beobachte den Farbumschlag und die Werte zwischen <strong>0 und 14</strong>.</li>
+            </ol>
+
+            <!-- Eingebettete HTML5-Simulation der University of Colorado -->
+            <iframe 
+                class="interactive-frame" 
+                src="https://phet.colorado.edu/sims/html/ph-scale/latest/ph-scale_all.html?locale=de" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- 3. Auswertung & Freischaltung von Akte 2 -->
+        <div class="step-card">
+            <h2>3. Auswertung & Ermittlungsbefund</h2>
+            <p>
+                Trage deine Erkenntnisse zusammen, um die Freigabe für das Speziallabor in <strong>Akte 2</strong> zu erhalten:
+            </p>
+            <ul>
+                <li><strong>pH = 7:</strong> Neutral (reines Wasser)</li>
+                <li><strong>pH &gt; 7:</strong> Basisch / Alkalisch (z. B. Seife, Lauge)</li>
+                <li><strong>pH &lt; 7:</strong> ...?</li>
+            </ul>
+
+            <div class="lock-box">
+                <h3>Ermittler-Check für Akte 2:</h3>
+                <p>Wie nennt man die Eigenschaft von Lösungen, die einen <strong>pH-Wert unter 7</strong> haben und Indikatoren rot färben?</p>
+                <div class="input-group">
+                    <input type="text" id="answer" class="form-input" placeholder="Lösungswort eingeben (z. B. sauer)">
+                    <button class="submit-btn" onclick="checkAnswer()">Akte 2 entsperren</button>
+                </div>
+                <div id="feedback" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer() {
+            const input = document.getElementById('answer').value.trim().toLowerCase();
+            const feedback = document.getElementById('feedback');
+
+            // Akzeptiert "sauer", "säuren" oder "säure"
+            if (input === 'sauer' || input === 'säure' || input === 'saeure' || input === 'säuren') {
+                feedback.className = 'feedback ok';
+                feedback.innerHTML = '✓ Analyse bestätigt: Es handelt sich um eine Säure!<br>Leite weiter zur Teilchenebene in Akte 2...';
+                
+                // Nach 1,2 Sekunden wird die nächste Seite geladen
+                setTimeout(() => {
+                    window.location.href = 'akte2.html';
+                }, 1200);
+            } else {
+                feedback.className = 'feedback err';
+                feedback.innerText = '✗ Nicht ganz richtig. Schau dir in der Simulation Stoffe mit pH < 7 noch einmal an!';
+            }
+        }
+    </script>
+</body>
+</html>
