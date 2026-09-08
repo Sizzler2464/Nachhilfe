@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt: Havarie am Silbersee | Akte 4: Die Rettung</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content-container {
+            width: 100%;
+            max-width: 850px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .nav-link {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .case-header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #2a1b1b 100%);
+            border: 1px solid #4a2828;
+            border-left: 5px solid #f59e0b;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .tag {
+            background-color: #f59e0b;
+            color: #121212;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #60a5fa;
+            font-size: 2.2rem;
+            margin: 5px 0 10px 0;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        .step-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .step-card h2 {
+            color: #60a5fa;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .step-card p, .step-card li {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+        .reaction-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15rem;
+            color: #f59e0b;
+            text-align: center;
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+        .info-box {
+            background: rgba(245, 158, 11, 0.08);
+            border-left: 4px solid #f59e0b;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .form-section {
+            background: #1e1e1e;
+            padding: 25px;
+            border-radius: 10px;
+            border: 1px solid #3b82f6;
+            margin-top: 30px;
+            box-shadow: 0 4px 15px rgba(59, 130, 246, 0.2);
+        }
+        .form-section h2 {
+            color: #60a5fa;
+            margin-top: 0;
+        }
+        .form-label {
+            display: block;
+            margin-top: 15px;
+            margin-bottom: 5px;
+            color: #93c5fd;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .form-input {
+            width: 100%;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #121212;
+            color: white;
+            box-sizing: border-box;
+            font-family: inherit;
+        }
+        .form-btn {
+            background-color: #10b981;
+            color: #121212;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 1rem;
+            margin-top: 20px;
+            width: 100%;
+            transition: background-color 0.2s;
+        }
+        .form-btn:hover {
+            background-color: #059669;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+        <!-- Navigation -->
+        <div class="nav-links">
+            <a href="akte3.html" class="nav-link">← Zurück zu Akte 3</a>
+            <a href="../chemie-anorganik.html" class="nav-link">Zur Themenübersicht</a>
+        </div>
+
+        <!-- Fall-Kopfbereich -->
+        <div class="case-header">
+            <span class="tag">EINSATZPHASE • GEFAHRENABWEHR</span>
+            <h1>Projekt: Havarie am Silbersee</h1>
+            <p class="subtitle">Ermittlungsakte 4: Das Notfall-Protokoll & die Neutralisation</p>
+        </div>
+
+        <!-- 1. Die Lage am Unfallort -->
+        <div class="step-card">
+            <h2>1. Die akute Bedrohung</h2>
+            <p>
+                Die ausgelaufene Salzsäure (pH ca. 1) steht nur noch wenige Meter vor der Uferböschung. Gelangt sie in den See, sterben Fische und Wasserpflanzen innerhalb weniger Minuten an der extremen Übersäuerung.
+            </p>
+            <div class="info-box">
+                <strong>Warum reines Verdünnen mit Wasser fehlschlägt:</strong><br>
+                Die pH-Skala ist logarithmisch aufgebaut! Um eine saure Lösung von pH 1 auf den neutralen Wert pH 7 zu verdünnen, bräuchte man die <strong>millionenfache Menge Wasser</strong> (10⁶ Liter Wasser pro Liter Säure). Das steht vor Ort nicht zur Verfügung. Es gibt nur eine Lösung: <strong>Chemische Neutralisation!</strong>
+            </div>
+        </div>
+
+        <!-- 2. Die chemische Rettung -->
+        <div class="step-card">
+            <h2>2. Das Neutralisationsprinzip auf Teilchenebene</h2>
+            <p>
+                Aus Akte 3 wissen wir: Auf dem LKW befinden sich Fässer mit Natronlauge ($NaOH$). 
+                Gibt man die Lauge kontrolliert zur Säure, reagieren die beiden gegensätzlichen Ionen miteinander:
+            </p>
+
+            <div class="reaction-box">
+                H₃O⁺ (aus Säure) + OH⁻ (aus Lauge) &nbsp;→&nbsp; 2 H₂O (reines Wasser)
+            </div>
+
+            <p>
+                Das Oxonium-Ion gibt sein Proton an das Hydroxid-Ion ab. Beide heben sich in ihrer ätzenden Wirkung vollständig auf – es entsteht harmloses Wasser.
+            </p>
+            <p>
+                Die Begleit-Ionen ($Na^+$ und $Cl^-$) bleiben gelöst im Wasser zurück. Es entsteht eine neutrale Kochsalzlösung (pH = 7):
+            </p>
+
+            <div class="reaction-box">
+                HCl + NaOH &nbsp;→&nbsp; NaCl (gelöst) + H₂O
+            </div>
+        </div>
+
+        <!-- 3. Das digitale Gutachten / Abgabeformular -->
+        <div class="form-section">
+            <h2>📑 Offizielles Abschlussgutachten</h2>
+            <p style="color: #a0a0a0;">
+                Schließe den Fall ab, indem du deine wissenschaftliche Analyse einreichst. Deine Antworten werden direkt an die Einsatzleitung übermittelt.
+            </p>
+
+            <form action="https://formsubmit.co/e4cfe7f62d809997226509078bbcd98d" method="POST">
+                <!-- Einstellungen für FormSubmit -->
+                <input type="hidden" name="_subject" value="Projekt Silbersee: Neues Gutachten eingereicht">
+                <input type="hidden" name="_captcha" value="false">
+                <input type="hidden" name="Projekt" value="Chemie 9 - Havarie Silbersee">
+
+                <label class="form-label" for="student_name">Dein Vor- und Nachname:</label>
+                <input type="text" id="student_name" name="Name" required class="form-input" placeholder="z. B. Max Mustermann">
+
+                <label class="form-label" for="q1">1. Welche Chemikalie lief am Silbersee aus und warum reagiert sie sauer?</label>
+                <textarea id="q1" name="1_Stoff_und_Teilchen" rows="3" required class="form-input" placeholder="Erkläre kurz anhand des H₃O⁺-Ions..."></textarea>
+
+                <label class="form-label" for="q2">2. Warum reicht es nicht, die Säure einfach mit Seewasser zu verdünnen?</label>
+                <textarea id="q2" name="2_Verduennungs_Problem" rows="2" required class="form-input" placeholder="Stichwort: pH-Skala und Wassermengen..."></textarea>
+
+                <label class="form-label" for="q3">3. Was passierte bei der Rettungsaktion auf Teilchenebene (Neutralisation)?</label>
+                <textarea id="q3" name="3_Neutralisation" rows="3" required class="form-input" placeholder="Welche Ionen reagierten miteinander und welche Stoffe entstanden?"></textarea>
+
+                <button type="submit" class="form-btn">Gutachten einreichen & Fall abschließen</button>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
