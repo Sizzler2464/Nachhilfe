@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Projekt: Havarie am Silbersee | Akte 3</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: #e0e0e0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 40px 20px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .content-container {
+            width: 100%;
+            max-width: 850px;
+        }
+        .nav-links {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 25px;
+        }
+        .nav-link {
+            color: #60a5fa;
+            text-decoration: none;
+        }
+        .nav-link:hover {
+            text-decoration: underline;
+        }
+        .case-header {
+            background: linear-gradient(135deg, #1e1e1e 0%, #1a2a22 100%);
+            border: 1px solid #2a4535;
+            border-left: 5px solid #10b981;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 30px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+        }
+        .tag {
+            background-color: #10b981;
+            color: white;
+            padding: 3px 8px;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: bold;
+            letter-spacing: 1px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        h1 {
+            color: #60a5fa;
+            font-size: 2.2rem;
+            margin: 5px 0 10px 0;
+        }
+        .subtitle {
+            color: #94a3b8;
+            margin: 0;
+            font-size: 1.05rem;
+        }
+        .step-card {
+            background-color: #1e1e1e;
+            border: 1px solid #333;
+            border-radius: 10px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        .step-card h2 {
+            color: #60a5fa;
+            margin-top: 0;
+            border-bottom: 1px solid #333;
+            padding-bottom: 10px;
+            font-size: 1.3rem;
+        }
+        .step-card p, .step-card li {
+            color: #c0c0c0;
+            line-height: 1.6;
+        }
+        .reaction-box {
+            background: #0f172a;
+            border: 1px solid #334155;
+            padding: 15px 20px;
+            border-radius: 8px;
+            font-family: 'Courier New', Courier, monospace;
+            font-size: 1.15rem;
+            color: #34d399;
+            text-align: center;
+            margin: 20px 0;
+            letter-spacing: 1px;
+        }
+        .info-box {
+            background: rgba(16, 185, 129, 0.08);
+            border-left: 4px solid #10b981;
+            padding: 15px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+        .interactive-frame {
+            width: 100%;
+            height: 540px;
+            border: 1px solid #333;
+            border-radius: 8px;
+            margin: 20px 0;
+            background: #000;
+        }
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        .compare-table th, .compare-table td {
+            border: 1px solid #333;
+            padding: 10px 12px;
+            text-align: left;
+        }
+        .compare-table th {
+            background-color: #16202e;
+            color: #60a5fa;
+        }
+        .lock-box {
+            background: #182234;
+            border: 1px dashed #3b82f6;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 25px;
+        }
+        .lock-box h3 {
+            margin-top: 0;
+            color: #93c5fd;
+        }
+        .input-group {
+            display: flex;
+            gap: 10px;
+            margin-top: 15px;
+            flex-wrap: wrap;
+        }
+        .form-input {
+            flex: 1;
+            min-width: 200px;
+            padding: 12px;
+            border-radius: 5px;
+            border: 1px solid #333;
+            background: #121212;
+            color: white;
+            font-family: inherit;
+        }
+        .submit-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+        .submit-btn:hover {
+            background-color: #1d4ed8;
+        }
+        .feedback {
+            margin-top: 12px;
+            font-weight: bold;
+            display: none;
+        }
+        .feedback.err { color: #f87171; display: block; }
+        .feedback.ok { color: #34d399; display: block; }
+    </style>
+</head>
+<body>
+
+    <div class="content-container">
+        <!-- Navigation -->
+        <div class="nav-links">
+            <a href="akte2.html" class="nav-link">← Zurück zu Akte 2</a>
+            <a href="../chemie-anorganik.html" class="nav-link">Zur Themenübersicht</a>
+        </div>
+
+        <!-- Fall-Kopfbereich -->
+        <div class="case-header">
+            <span class="tag">SPURENSICHERUNG • FUNDSTÜCK B</span>
+            <h1>Projekt: Havarie am Silbersee</h1>
+            <p class="subtitle">Ermittlungsakte 3: Der Gegenspieler (Alkalische Lösungen & Basen)</p>
+        </div>
+
+        <!-- 1. Der Fund -->
+        <div class="step-card">
+            <h2>1. Der zweite Kanister</h2>
+            <p>
+                Bei der weiteren Durchsuchung des LKW-Wracks sichert das Bergungsteam einen weiteren, intakten Kunststoffkanister mit weißem Pulver und festen Plätzchen. Das Etikett ist zerkratzt, man erkennt nur noch: <em>„...triumhydroxid (fest)“</em>.
+            </p>
+            <p>
+                Die Feuerwehr löst eine kleine Probe davon in Wasser auf und hält Universalindikatorpapier hinein:
+                <strong>Der Streifen färbt sich tiefblau bis violett (pH-Wert ca. 13 bis 14)!</strong>
+            </p>
+            <div class="info-box">
+                <strong>Erstes Fazit:</strong><br>
+                Wir haben es hier mit dem genauen Gegenpol zur Säure zu tun: einer <strong>alkalischen Lösung</strong> (auch <em>Lauge</em> genannt). 
+                Auf der pH-Skala liegt sie ganz weit oben (pH &gt; 7).
+            </div>
+        </div>
+
+        <!-- 2. Simulation Lauge auf Teilchenebene -->
+        <div class="step-card">
+            <h2>2. Molekül-Simulation: Was schwimmt in der Lauge?</h2>
+            <p>
+                Untersuche die Lösung mit der Simulation:
+            </p>
+            <ol>
+                <li>Klicke links auf <strong>Starke Base (MOH)</strong> oder <strong>Schwache Base (B)</strong>.</li>
+                <li>Beobachte die Ionen, die in der wässrigen Lösung entstehen.</li>
+                <li>Vergleiche die Ionen mit denen aus Akte 2: Gibt es hier H₃O⁺-Ionen im Überfluss oder ganz andere Teilchen?</li>
+            </ol>
+
+            <!-- Eingebettete HTML5-Simulation "Säure-Base-Lösungen" -->
+            <iframe 
+                class="interactive-frame" 
+                src="https://phet.colorado.edu/sims/html/acid-base-solutions/latest/acid-base-solutions_all.html?locale=de" 
+                allowfullscreen>
+            </iframe>
+        </div>
+
+        <!-- 3. Das Brønsted-Konzept für Basen -->
+        <div class="step-card">
+            <h2>3. Protonenakzeptoren und Hydroxid-Ionen</h2>
+            <p>
+                Feste Stoffe wie Natriumhydroxid ($NaOH$) bestehen aus einem Ionengitter. Löst man sie in Wasser, zerfallen sie in frei bewegliche Ionen:
+            </p>
+            
+            <div class="reaction-box">
+                NaOH (fest) &nbsp;→&nbsp; Na⁺ (aq) + OH⁻ (aq)
+            </div>
+
+            <p>
+                Aber was macht eine Base nach <strong>Brønsted</strong> aus?
+            </p>
+            <ul>
+                <li>Wenn Säuren Protonen abgeben (<strong>Protonendonatoren</strong>), dann sind Basen Teilchen, die Protonen aufnehmen können: <strong>Protonenakzeptoren</strong> (Protonenempfänger).</li>
+                <li>Das <strong>OH⁻-Ion (Hydroxid-Ion)</strong> ist der eigentliche Träger der basischen/alkalischen Eigenschaften und sorgt für den blauen Farbumschlag des Indikators.</li>
+            </ul>
+
+            <table class="compare-table">
+                <thead>
+                    <tr>
+                        <th>Eigenschaft</th>
+                        <th>Säurelösung (z. B. Salzsäure)</th>
+                        <th>Laugenlösung (z. B. Natronlauge)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>pH-Bereich</strong></td>
+                        <td>pH &lt; 7 (0 bis 6)</td>
+                        <td>pH &gt; 7 (8 bis 14)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Indikatorfarbe</strong></td>
+                        <td>Rot / Orange</td>
+                        <td>Blau / Violett</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Charakteristisches Ion</strong></td>
+                        <td><strong>H₃O⁺</strong> (Oxonium-Ion)</td>
+                        <td><strong>OH⁻</strong> (Hydroxid-Ion)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>Brønsted-Rolle</strong></td>
+                        <td>Protonendonator (gibt H⁺ ab)</td>
+                        <td>Protonenakzeptor (nimmt H⁺ auf)</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="lock-box">
+                <h3>Ermittler-Check für Akte 4:</h3>
+                <p>
+                    Wie lautet der Fachname des negativ geladenen Ions <strong>OH⁻</strong>, das für die basische Wirkung verantwortlich ist?
+                </p>
+                <div class="input-group">
+                    <input type="text" id="answer3" class="form-input" placeholder="Name des Ions (z. B. Hydroxid...)">
+                    <button class="submit-btn" onclick="checkAnswer3()">Akte 4 entsperren</button>
+                </div>
+                <div id="feedback3" class="feedback"></div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function checkAnswer3() {
+            const val = document.getElementById('answer3').value.trim().toLowerCase();
+            const fb = document.getElementById('feedback3');
+
+            // Akzeptiert Hydroxid, Hydroxidion, Hydroxid-Ion
+            const validTerms = ['hydroxid', 'hydroxidion', 'hydroxid-ion', 'hydroxid-ionen', 'hydroxidionen'];
+
+            if (validTerms.includes(val)) {
+                fb.className = 'feedback ok';
+                fb.innerHTML = '✓ Vollkommen richtig! Das Hydroxid-Ion (OH⁻) ist der Schlüssel.<br>Bereite Einsatzplan für die finale Neutralisation in Akte 4 vor...';
+                
+                setTimeout(() => {
+                    window.location.href = 'akte4.html';
+                }, 1300);
+            } else {
+                fb.className = 'feedback err';
+                fb.innerText = '✗ Falsch. Schau noch einmal in die Tabelle: Welches Ion hat die Formel OH⁻?';
+            }
+        }
+    </script>
+</body>
+</html>
