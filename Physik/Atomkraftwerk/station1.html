@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Station 1: Was passiert im Kern? | Physik Klasse 9</title>
+  <title>Station 1: Was passiert im Kern? | Physik 9</title>
   <style>
     :root {
       --bg: #0f172a;
@@ -13,35 +13,30 @@
       --text: #f8fafc;
       --text-muted: #94a3b8;
       --border: #334155;
-      --highlight: #f59e0b;
+      --success: #22c55e;
+      --danger: #ef4444;
+      --box-bg: #0b1120;
     }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
-      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
       background-color: var(--bg);
       color: var(--text);
       line-height: 1.6;
-      padding: 2rem 1rem;
+      padding: 1.5rem 1rem;
     }
 
-    .container {
-      max-width: 860px;
-      margin: 0 auto;
-    }
+    .container { max-width: 820px; margin: 0 auto; }
 
     header {
       margin-bottom: 2rem;
       border-bottom: 1px solid var(--border);
-      padding-bottom: 1.5rem;
+      padding-bottom: 1rem;
     }
 
-    .badge {
+    .step-badge {
       display: inline-block;
       background: rgba(56, 189, 248, 0.15);
       color: var(--accent);
@@ -49,21 +44,14 @@
       border-radius: 9999px;
       font-size: 0.85rem;
       font-weight: 600;
-      margin-bottom: 0.75rem;
-    }
-
-    h1 {
-      font-size: 2rem;
       margin-bottom: 0.5rem;
     }
 
-    p.intro {
-      color: var(--text-muted);
-      font-size: 1.1rem;
-    }
+    h1 { font-size: 1.8rem; margin-bottom: 0.5rem; }
+    p.lead { color: var(--text-muted); font-size: 1.05rem; }
 
     .card {
-      background-color: var(--card-bg);
+      background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 1.5rem;
@@ -71,91 +59,128 @@
     }
 
     h2 {
-      color: var(--accent);
       font-size: 1.3rem;
+      color: var(--accent);
       margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
     }
 
-    /* Simulation Iframe */
-    .sim-container {
-      position: relative;
-      width: 100%;
-      padding-bottom: 60%; /* 16:9 Verhältnis */
-      height: 0;
-      overflow: hidden;
+    /* Interaktive Klick-Fragen */
+    .quiz-question {
+      background: var(--box-bg);
+      border: 1px solid var(--border);
       border-radius: 8px;
-      border: 1px solid var(--border);
-      margin: 1.5rem 0;
+      padding: 1rem;
+      margin: 1rem 0;
     }
 
-    .sim-container iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      border: 0;
+    .options {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+      margin-top: 0.75rem;
     }
 
-    /* Aufgaben & Notizbereich */
-    .task-list {
-      list-style-type: none;
-    }
-
-    .task-item {
-      margin-bottom: 1.25rem;
-      padding-left: 1.5rem;
-      position: relative;
-    }
-
-    .task-item::before {
-      content: "→";
-      position: absolute;
-      left: 0;
-      color: var(--highlight);
-      font-weight: bold;
-    }
-
-    textarea {
-      width: 100%;
-      min-height: 80px;
-      background-color: #0b1120;
-      border: 1px solid var(--border);
-      border-radius: 6px;
+    .opt-btn {
+      background: #1e293b;
       color: var(--text);
-      padding: 0.75rem;
-      margin-top: 0.5rem;
-      font-family: inherit;
-      resize: vertical;
+      border: 1px solid var(--border);
+      padding: 0.75rem 1rem;
+      border-radius: 6px;
+      text-align: left;
+      cursor: pointer;
+      font-size: 0.95rem;
+      transition: all 0.2s;
     }
 
-    textarea:focus {
-      outline: none;
+    .opt-btn:hover {
       border-color: var(--accent);
+      background: #283548;
+    }
+
+    .feedback {
+      margin-top: 0.75rem;
+      font-weight: 500;
+      font-size: 0.95rem;
+      display: none;
+      padding: 0.5rem 0.75rem;
+      border-radius: 6px;
+    }
+
+    .correct { background: rgba(34, 197, 94, 0.15); color: var(--success); }
+    .wrong { background: rgba(239, 68, 68, 0.15); color: var(--danger); }
+
+    /* Analogie-Kasten */
+    .analogy-box {
+      background: rgba(56, 189, 248, 0.08);
+      border-left: 4px solid var(--accent);
+      padding: 1rem;
+      border-radius: 0 8px 8px 0;
+      margin: 1rem 0;
+    }
+
+    /* Simulation */
+    .sim-wrapper {
+      position: relative;
+      width: 100%;
+      padding-bottom: 60%;
+      height: 0;
+      border-radius: 8px;
+      overflow: hidden;
+      border: 1px solid var(--border);
+      margin: 1rem 0;
+    }
+
+    .sim-wrapper iframe {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%; border: 0;
+    }
+
+    .instruction-steps {
+      background: var(--box-bg);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1rem 1.25rem;
+      margin: 1rem 0;
+    }
+
+    .instruction-steps ol {
+      margin-left: 1.25rem;
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    /* Merkkasten */
+    .summary-box {
+      background: rgba(34, 197, 94, 0.08);
+      border: 1px solid rgba(34, 197, 94, 0.3);
+      padding: 1.25rem;
+      border-radius: 8px;
+      margin-top: 1.5rem;
+    }
+
+    .summary-box h3 {
+      color: var(--success);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
     }
 
     .nav-footer {
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-top: 3rem;
-      padding-top: 1.5rem;
-      border-top: 1px solid var(--border);
+      justify-content: flex-end;
+      margin-top: 2rem;
     }
 
-    .btn {
-      display: inline-block;
-      background-color: var(--accent);
+    .btn-next {
+      background: var(--accent);
       color: #0f172a;
       text-decoration: none;
-      padding: 0.75rem 1.5rem;
+      padding: 0.85rem 1.75rem;
       border-radius: 8px;
-      font-weight: 600;
-      transition: background 0.2s ease;
-    }
-
-    .btn:hover {
-      background-color: var(--accent-hover);
+      font-weight: bold;
     }
   </style>
 </head>
@@ -163,74 +188,139 @@
 
   <div class="container">
     <header>
-      <span class="badge">Station 1 von 3 • Kernphysik</span>
-      <h1>Der zerbrechliche Riese: Uran-235</h1>
-      <p class="intro">
-        Bevor in einem Kraftwerk Strom erzeugt werden kann, müssen wir ganz tief hineinschauen – direkt in das Innere eines einzelnen Atoms.
-      </p>
+      <span class="step-badge">Station 1 • Der Start</span>
+      <h1>Wie bringt man einen Atomkern zum Platzen?</h1>
+      <p class="lead">Schritt-für-Schritt-Rundgang durch das Geheimnis der Kernspaltung.</p>
     </header>
 
-    <!-- Didaktischer Einstieg: Vorwissen -->
+    <!-- SCHRITT 1: VORWISSEN PRÜFEN -->
     <section class="card">
-      <h2>1. Was du bereits weißt</h2>
+      <h2>1. Kleiner Check: Was steckt im Kern?</h2>
       <p>
-        Ein Atomkern besteht aus positiv geladenen <strong>Protonen</strong> und ungeladenen <strong>Neutronen</strong>. 
-        Im Kern von <strong>Uran-235</strong> drängen sich stolze <strong>92 Protonen</strong> und <strong>143 Neutronen</strong> auf engstem Raum zusammen.
+        Bevor wir etwas spalten können, müssen wir uns an die Bausteine erinnern. 
+        In der Mitte jedes Atoms sitzt der winzige Atomkern.
       </p>
-      <p style="margin-top: 0.75rem;">
-        Dieser Kern ist so vollgepackt, dass er extrem instabil ist – vergleichbar mit einem Wassertropfen, der kurz davor ist zu platzen.
+
+      <div class="quiz-question">
+        <p><strong>Frage 1:</strong> Welche beiden Teilchenarten stecken zusammen im Atomkern?</p>
+        <div class="options">
+          <button class="opt-btn" onclick="checkAnswer(this, false, 'Leider nein: Elektronen kreisen weit außen in der Hülle!')">A) Elektronen und Neutronen</button>
+          <button class="opt-btn" onclick="checkAnswer(this, true, 'Richtig! Protonen (positiv) und Neutronen (neutral) bilden zusammen den Kern.')">B) Protonen und Neutronen</button>
+          <button class="opt-btn" onclick="checkAnswer(this, false, 'Nicht ganz: Elektronen gehören zur Atomhülle, nicht in den Kern.')">C) Nur Elektronen</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+    </section>
+
+    <!-- SCHRITT 2: DAS URAN-PROBLEM (DIE ANALOGIE) -->
+    <section class="card">
+      <h2>2. Warum ausgerechnet Uran-235?</h2>
+      <p>
+        Normale Kerne (wie Kohlenstoff oder Sauerstoff) halten bombenfest. 
+        Aber im Reaktor benutzen wir <strong>Uran-235</strong>.
+      </p>
+
+      <div class="analogy-box">
+        <strong>💧 Das Wassertropfen-Modell:</strong><br>
+        Stell dir einen vollgefüllten Wassertropfen vor. Solange er klein ist, hält die Oberflächenspannung ihn stabil zusammen. 
+        Wenn du aber immer mehr Wasser hineintropfst, wird der Tropfen so riesig und schwer, dass er schon bei der kleinsten Erschütterung auseinanderreißt.
+      </div>
+
+      <p>
+        Genau so ist Uran-235: Im Kern drängen sich <strong>92 Protonen</strong> und <strong>143 Neutronen</strong> (zusammen 235 Teilchen). 
+        Die Protonen stoßen sich elektrisch gegenseitig ab. Der Kern ist riesig, wackelig und kurz vor dem Überlaufen.
       </p>
     </section>
 
-    <!-- Interaktives Element: PhET Simulation -->
+    <!-- SCHRITT 3: DIE SIMULATION MIT KLARER ANLEITUNG -->
     <section class="card">
-      <h2>2. Experiment: Bringe den Kern zum Platzen</h2>
-      <p>
-        Unten siehst du die Kanone, mit der du einzelne Neutronen abfeuern kannst.
-        Wähle oben den Reiter <strong>„Spaltung: Ein Kern“</strong> (Fission: One Nucleus) aus.
-      </p>
+      <h2>3. Dein Labor-Versuch: Der Stoß</h2>
+      <p>Jetzt bringen wir den wackeligen Tropfen zum Platzen!</p>
 
-      <div class="sim-container">
-        <!-- PhET Simulation Kernspaltung (HTML5) -->
+      <div class="instruction-steps">
+        <strong>So gehst du vor:</strong>
+        <ol>
+          <li>Klicke in der grauen Leiste der Simulation auf den linken Reiter: <strong>„Spaltung: Ein Kern“</strong>.</li>
+          <li>Klicke unten rechts auf die rote Taste <strong>„Pause“</strong> oder stelle den Schieberegler auf <strong>„Langsam“</strong> (Schneckensymbol).</li>
+          <li>Klicke auf den roten Knopf an der Kanone, um <strong>ein einzelnes Neutron</strong> abzuschießen.</li>
+        </ol>
+      </div>
+
+      <div class="sim-wrapper">
         <iframe 
           src="https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_all.html" 
           allowfullscreen>
         </iframe>
       </div>
 
-      <p style="font-size: 0.9rem; color: var(--text-muted);">
-        Tipp: Du kannst die Animation verlangsamen, um genau zu beobachten, was im Moment des Treffers mit dem Kern geschieht.
-      </p>
+      <!-- BEOBACHTUNG 1 -->
+      <div class="quiz-question">
+        <p><strong>Beobachtung 1:</strong> Was passiert im allerersten Moment, wenn das weiße Neutron den gelben Kern trifft?</p>
+        <div class="options">
+          <button class="opt-btn" onclick="checkAnswer(this, false, 'Schau noch einmal ganz genau in Zeitlupe hin.')">A) Das Neutron prallt einfach ab wie ein Gummiball.</button>
+          <button class="opt-btn" onclick="checkAnswer(this, true, 'Genau! Das Neutron schlüpft kurz hinein. Der Kern wird zu U-236, fängt heftig an zu schwingen und verformt sich wie ein Wackelpudding.')">B) Das Neutron wird geschluckt, der Kern verformt sich und beginnt zu zittern.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- BEOBACHTUNG 2 -->
+      <div class="quiz-question">
+        <p><strong>Beobachtung 2:</strong> Der Kern zerreißt in zwei große Stücke (Spaltprodukte). Was fliegt <em>außerdem</em> noch weg? Zähle sie!</p>
+        <div class="options">
+          <button class="opt-btn" onclick="checkAnswer(this, false, 'Zähle die kleinen weißen Kügelchen, die zur Seite wegschießen.')">A) Gar nichts mehr, nur die 2 großen Brocken.</button>
+          <button class="opt-btn" onclick="checkAnswer(this, true, 'Perfekt gezählt! Es werden meist 2 bis 3 freie Neutronen mit hohem Tempo weggeschleudert.')">B) Genau 3 kleine weiße Neutronen.</button>
+          <button class="opt-btn" onclick="checkAnswer(this, false, 'So viele sind es nicht. Schau noch einmal auf die weißen Punkte.')">C) Ungefähr 20 Neutronen.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- BEOBACHTUNG 3: ENERGIE -->
+      <div class="quiz-question">
+        <p><strong>Beobachtung 3:</strong> Die beiden großen Trümmerkerne haben beide eine positive Ladung. Was machen zwei Plusladungen miteinander?</p>
+        <div class="options">
+          <button class="opt-btn" onclick="checkAnswer(this, true, 'Ganz genau! Sie stoßen sich extrem heftig ab und rasen mit riesigem Tempo auseinander. Diese Bewegungsenergie wird später zu Wärme!')">A) Gleiche Ladungen stoßen sich ab – sie sausen mit hoher Geschwindigkeit auseinander.</button>
+          <button class="opt-btn" onclick="checkAnswer(this, false, 'Denk an Magnete: Plus und Plus zieht sich nicht an, sondern stößt sich ab!')">B) Gleiche Ladungen ziehen sich an.</button>
+        </div>
+        <div class="feedback"></div>
+      </div>
+
+      <!-- MERKKASTEN ZUR SICHERUNG -->
+      <div class="summary-box">
+        <h3>💡 Das Wichtigste in 3 Sätzen (Zum Merken)</h3>
+        <p>
+          1. Ein <strong>langsames Neutron</strong> trifft einen instabilen <strong>Uran-235-Kern</strong>.<br>
+          2. Der Kern gerät ins Schwingen und <strong>spaltet sich</strong> in zwei Trümmerkerne.<br>
+          3. Dabei werden <strong>2 bis 3 neue Neutronen frei</strong> und eine <strong>riesige Menge Bewegungsenergie (Wärme)</strong> entsteht.
+        </p>
+      </div>
     </section>
 
-    <!-- Beobachtungsaufträge -->
-    <section class="card">
-      <h2>3. Deine Beobachtungen im Forscherheft</h2>
-      <ul class="task-list">
-        <li class="task-item">
-          <strong>Schritt 1: Der Treffer</strong><br>
-          Feuere ein Neutron auf den gelben U-235-Kern ab. Was passiert für einen winzigen Sekundenbruchteil mit dem Kern, <em>bevor</em> er zerbricht?
-          <textarea placeholder="Beschreibe kurz die Formveränderung des Kerns..."></textarea>
-        </li>
-        <li class="task-item">
-          <strong>Schritt 2: Die Trümmerteile</strong><br>
-          In was zerfällt der getroffene Kern? Zähle genau nach, wie viele kleine weiße Teilchen (Neutronen) dabei frei in den Raum weggeschleudert werden.
-          <textarea placeholder="Ich beobachte: Es entstehen ... große Trümmerkerne und ... freie Neutronen."></textarea>
-        </li>
-        <li class="task-item">
-          <strong>Schritt 3: Woher kommt die Kraftwerks-Energie?</strong><br>
-          Achte darauf, wie schnell die beiden großen Spaltstücke auseinanderfliegen. Überlege: Welche Energieform ist das im ersten Moment? (Tipp: Bewegung)
-          <textarea placeholder="Die Energie steckt zunächst in der..."></textarea>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Navigation zur nächsten Station -->
     <div class="nav-footer">
-      <span style="color: var(--text-muted);">Weiter geht's mit der Kettenreaktion</span>
-      <a href="station2.html" class="btn">Zu Station 2 →</a>
+      <a href="station2.html" class="btn-next">Weiter zu Station 2: Die Kettenreaktion →</a>
     </div>
   </div>
 
+  <script>
+    function checkAnswer(button, isCorrect, message) {
+      const card = button.closest('.quiz-question');
+      const feedback = card.querySelector('.feedback');
+      
+      // Reset aller Buttons in dieser Frage
+      card.querySelectorAll('.opt-btn').forEach(btn => {
+        btn.style.borderColor = 'var(--border)';
+      });
+
+      feedback.style.display = 'block';
+      feedback.textContent = message;
+
+      if (isCorrect) {
+        button.style.borderColor = 'var(--success)';
+        feedback.className = 'feedback correct';
+      } else {
+        button.style.borderColor = 'var(--danger)';
+        feedback.className = 'feedback wrong';
+      }
+    }
+  </script>
 </body>
 </html>
