@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Station 1: Was passiert im Kern? | Physik Klasse 9</title>
+  <style>
+    :root {
+      --bg: #0f172a;
+      --card-bg: #1e293b;
+      --accent: #38bdf8;
+      --accent-hover: #0284c7;
+      --text: #f8fafc;
+      --text-muted: #94a3b8;
+      --border: #334155;
+      --highlight: #f59e0b;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      background-color: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      padding: 2rem 1rem;
+    }
+
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+    }
+
+    header {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 1.5rem;
+    }
+
+    .badge {
+      display: inline-block;
+      background: rgba(56, 189, 248, 0.15);
+      color: var(--accent);
+      padding: 0.25rem 0.75rem;
+      border-radius: 9999px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      margin-bottom: 0.75rem;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 0.5rem;
+    }
+
+    p.intro {
+      color: var(--text-muted);
+      font-size: 1.1rem;
+    }
+
+    .card {
+      background-color: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    h2 {
+      color: var(--accent);
+      font-size: 1.3rem;
+      margin-bottom: 1rem;
+    }
+
+    /* Simulation Iframe */
+    .sim-container {
+      position: relative;
+      width: 100%;
+      padding-bottom: 60%; /* 16:9 Verhältnis */
+      height: 0;
+      overflow: hidden;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      margin: 1.5rem 0;
+    }
+
+    .sim-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* Aufgaben & Notizbereich */
+    .task-list {
+      list-style-type: none;
+    }
+
+    .task-item {
+      margin-bottom: 1.25rem;
+      padding-left: 1.5rem;
+      position: relative;
+    }
+
+    .task-item::before {
+      content: "→";
+      position: absolute;
+      left: 0;
+      color: var(--highlight);
+      font-weight: bold;
+    }
+
+    textarea {
+      width: 100%;
+      min-height: 80px;
+      background-color: #0b1120;
+      border: 1px solid var(--border);
+      border-radius: 6px;
+      color: var(--text);
+      padding: 0.75rem;
+      margin-top: 0.5rem;
+      font-family: inherit;
+      resize: vertical;
+    }
+
+    textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+
+    .nav-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-top: 3rem;
+      padding-top: 1.5rem;
+      border-top: 1px solid var(--border);
+    }
+
+    .btn {
+      display: inline-block;
+      background-color: var(--accent);
+      color: #0f172a;
+      text-decoration: none;
+      padding: 0.75rem 1.5rem;
+      border-radius: 8px;
+      font-weight: 600;
+      transition: background 0.2s ease;
+    }
+
+    .btn:hover {
+      background-color: var(--accent-hover);
+    }
+  </style>
+</head>
+<body>
+
+  <div class="container">
+    <header>
+      <span class="badge">Station 1 von 3 • Kernphysik</span>
+      <h1>Der zerbrechliche Riese: Uran-235</h1>
+      <p class="intro">
+        Bevor in einem Kraftwerk Strom erzeugt werden kann, müssen wir ganz tief hineinschauen – direkt in das Innere eines einzelnen Atoms.
+      </p>
+    </header>
+
+    <!-- Didaktischer Einstieg: Vorwissen -->
+    <section class="card">
+      <h2>1. Was du bereits weißt</h2>
+      <p>
+        Ein Atomkern besteht aus positiv geladenen <strong>Protonen</strong> und ungeladenen <strong>Neutronen</strong>. 
+        Im Kern von <strong>Uran-235</strong> drängen sich stolze <strong>92 Protonen</strong> und <strong>143 Neutronen</strong> auf engstem Raum zusammen.
+      </p>
+      <p style="margin-top: 0.75rem;">
+        Dieser Kern ist so vollgepackt, dass er extrem instabil ist – vergleichbar mit einem Wassertropfen, der kurz davor ist zu platzen.
+      </p>
+    </section>
+
+    <!-- Interaktives Element: PhET Simulation -->
+    <section class="card">
+      <h2>2. Experiment: Bringe den Kern zum Platzen</h2>
+      <p>
+        Unten siehst du die Kanone, mit der du einzelne Neutronen abfeuern kannst.
+        Wähle oben den Reiter <strong>„Spaltung: Ein Kern“</strong> (Fission: One Nucleus) aus.
+      </p>
+
+      <div class="sim-container">
+        <!-- PhET Simulation Kernspaltung (HTML5) -->
+        <iframe 
+          src="https://phet.colorado.edu/sims/html/nuclear-fission/latest/nuclear-fission_all.html" 
+          allowfullscreen>
+        </iframe>
+      </div>
+
+      <p style="font-size: 0.9rem; color: var(--text-muted);">
+        Tipp: Du kannst die Animation verlangsamen, um genau zu beobachten, was im Moment des Treffers mit dem Kern geschieht.
+      </p>
+    </section>
+
+    <!-- Beobachtungsaufträge -->
+    <section class="card">
+      <h2>3. Deine Beobachtungen im Forscherheft</h2>
+      <ul class="task-list">
+        <li class="task-item">
+          <strong>Schritt 1: Der Treffer</strong><br>
+          Feuere ein Neutron auf den gelben U-235-Kern ab. Was passiert für einen winzigen Sekundenbruchteil mit dem Kern, <em>bevor</em> er zerbricht?
+          <textarea placeholder="Beschreibe kurz die Formveränderung des Kerns..."></textarea>
+        </li>
+        <li class="task-item">
+          <strong>Schritt 2: Die Trümmerteile</strong><br>
+          In was zerfällt der getroffene Kern? Zähle genau nach, wie viele kleine weiße Teilchen (Neutronen) dabei frei in den Raum weggeschleudert werden.
+          <textarea placeholder="Ich beobachte: Es entstehen ... große Trümmerkerne und ... freie Neutronen."></textarea>
+        </li>
+        <li class="task-item">
+          <strong>Schritt 3: Woher kommt die Kraftwerks-Energie?</strong><br>
+          Achte darauf, wie schnell die beiden großen Spaltstücke auseinanderfliegen. Überlege: Welche Energieform ist das im ersten Moment? (Tipp: Bewegung)
+          <textarea placeholder="Die Energie steckt zunächst in der..."></textarea>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Navigation zur nächsten Station -->
+    <div class="nav-footer">
+      <span style="color: var(--text-muted);">Weiter geht's mit der Kettenreaktion</span>
+      <a href="station2.html" class="btn">Zu Station 2 →</a>
+    </div>
+  </div>
+
+</body>
+</html>
