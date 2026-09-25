@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hilfreiche Dokumente & Vorlagen | Wissen Kompakt</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome für Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #090d16;
+            --card-bg: rgba(22, 30, 49, 0.65);
+            --card-border: rgba(255, 255, 255, 0.08);
+            --text-main: #f8fafc;
+            --text-muted: #94a3b8;
+            
+            --accent-docs: #f59e0b;
+            --docs-glow: rgba(245, 158, 11, 0.35);
+
+            --math-color: #38bdf8;
+            --physics-color: #a855f7;
+            --chemistry-color: #34d399;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        body {
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Ambient Glow Blobs */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.5;
+        }
+
+        .glow-1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, var(--docs-glow), transparent 70%);
+            top: -100px;
+            right: -100px;
+        }
+
+        .glow-2 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.2), transparent 70%);
+            bottom: 10%;
+            left: -100px;
+        }
+
+        /* Navigation */
+        nav {
+            width: 100%;
+            max-width: 1200px;
+            padding: 24px 20px 0;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            padding: 10px 18px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            color: #fff;
+            border-color: rgba(255, 255, 255, 0.25);
+            transform: translateX(-4px);
+        }
+
+        /* Header */
+        header {
+            text-align: center;
+            margin-top: 2.5rem;
+            margin-bottom: 2.5rem;
+            padding: 0 20px;
+            max-width: 750px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(245, 158, 11, 0.1);
+            border: 1px solid rgba(245, 158, 11, 0.25);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #fbbf24;
+            margin-bottom: 16px;
+            backdrop-filter: blur(8px);
+        }
+
+        header h1 {
+            font-size: clamp(2rem, 4vw, 3rem);
+            font-weight: 800;
+            margin-bottom: 12px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 40%, #94a3b8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        header p {
+            color: var(--text-muted);
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        /* Such- und Filterleiste */
+        .controls-container {
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin-bottom: 2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+
+        .search-box {
+            position: relative;
+            width: 100%;
+        }
+
+        .search-box i {
+            position: absolute;
+            left: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--text-muted);
+        }
+
+        .search-input {
+            width: 100%;
+            padding: 14px 20px 14px 50px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 16px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            backdrop-filter: blur(10px);
+            transition: all 0.3s ease;
+        }
+
+        .search-input:focus {
+            border-color: var(--accent-docs);
+            box-shadow: 0 0 20px rgba(245, 158, 11, 0.2);
+        }
+
+        .filter-tags {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+
+        .filter-btn {
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid var(--card-border);
+            color: var(--text-muted);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.25s ease;
+        }
+
+        .filter-btn:hover,
+        .filter-btn.active {
+            background: rgba(245, 158, 11, 0.15);
+            color: #fbbf24;
+            border-color: rgba(245, 158, 11, 0.4);
+        }
+
+        /* Dokumenten-Grid */
+        .docs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 22px;
+            width: 100%;
+            max-width: 1200px;
+            padding: 0 20px;
+            margin-bottom: 5rem;
+        }
+
+        .doc-card {
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 20px;
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            backdrop-filter: blur(16px);
+            transition: transform 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+        }
+
+        .doc-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 15px 30px -10px rgba(0, 0, 0, 0.5);
+        }
+
+        .doc-header {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 16px;
+        }
+
+        .file-icon {
+            width: 48px;
+            height: 48px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.4rem;
+            flex-shrink: 0;
+            background: rgba(239, 68, 68, 0.15);
+            color: #ef4444;
+        }
+
+        .doc-title-area h3 {
+            font-size: 1.15rem;
+            font-weight: 600;
+            color: #fff;
+            margin-bottom: 4px;
+            line-height: 1.4;
+        }
+
+        .tag-badge {
+            font-size: 0.75rem;
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-weight: 500;
+            display: inline-block;
+        }
+
+        .tag-physics { background: rgba(168, 85, 247, 0.15); color: var(--physics-color); }
+        .tag-chemistry { background: rgba(52, 211, 153, 0.15); color: var(--chemistry-color); }
+        .tag-general { background: rgba(245, 158, 11, 0.15); color: var(--accent-docs); }
+
+        .doc-desc {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            line-height: 1.5;
+            margin-bottom: 20px;
+        }
+
+        .doc-footer {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            padding-top: 16px;
+        }
+
+        .meta-info {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+        }
+
+        .download-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border: 1px solid var(--card-border);
+            transition: all 0.25s ease;
+        }
+
+        .download-btn:hover {
+            background: #fff;
+            color: #090d16;
+            transform: translateY(-2px);
+        }
+
+        /* Meldung wenn keine Ergebnisse gefunden wurden */
+        .no-results {
+            grid-column: 1 / -1;
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-muted);
+            display: none;
+        }
+
+        .no-results i {
+            font-size: 3rem;
+            margin-bottom: 12px;
+            opacity: 0.5;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+
+    <!-- Navigation -->
+    <nav>
+        <a href="index.html" class="back-btn">
+            <i class="fa-solid fa-arrow-left"></i>
+            <span>Zurück zur Übersicht</span>
+        </a>
+    </nav>
+
+    <!-- Header -->
+    <header>
+        <div class="badge">
+            <i class="fa-solid fa-folder-open"></i>
+            <span>Materialsammlung</span>
+        </div>
+        <h1>Hilfreiche Dokumente</h1>
+        <p>Praktische Checklisten, Leitfäden zu Messunsicherheiten und Vorlagen für Experimente und Protokolle.</p>
+    </header>
+
+    <!-- Suche & Filter -->
+    <div class="controls-container">
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" id="searchInput" class="search-input" placeholder="Dokument oder Stichwort suchen...">
+        </div>
+        <div class="filter-tags">
+            <button class="filter-btn active" data-filter="all">Alle Dokumente</button>
+            <button class="filter-btn" data-filter="physics">Physik</button>
+            <button class="filter-btn" data-filter="chemistry">Chemie</button>
+            <button class="filter-btn" data-filter="general">Allgemein / Methoden</button>
+        </div>
+    </div>
+
+    <!-- Dokumente Übersicht -->
+    <main class="docs-grid" id="docsGrid">
+
+        <!-- DOKUMENT 1: Checklist Experiment Physik -->
+        <article class="doc-card" data-category="physics" data-title="Checklist Experiment Physik Vorbereitung Durchführung Protokoll">
+            <div class="doc-header">
+                <div class="file-icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div class="doc-title-area">
+                    <span class="tag-badge tag-physics">Physik</span>
+                    <h3>Checkliste: Experiment Physik</h3>
+                </div>
+            </div>
+            <p class="doc-desc">Schritt-für-Schritt-Checkliste zur Planung, sauberen Durchführung und Auswertung physikalischer Experimente und Messreihen.</p>
+            <div class="doc-footer">
+                <span class="meta-info">PDF • Vorlage</span>
+                <a href="assets/Checklist%20Experiment%20Physik.pdf" class="download-btn" target="_blank" download>
+                    <i class="fa-solid fa-download"></i> Herunterladen
+                </a>
+            </div>
+        </article>
+
+        <!-- DOKUMENT 2: Checklist Experiment Chemie -->
+        <article class="doc-card" data-category="chemistry" data-title="Checklist Experiment Chemie Labor Sicherheit Protokoll">
+            <div class="doc-header">
+                <div class="file-icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div class="doc-title-area">
+                    <span class="tag-badge tag-chemistry">Chemie</span>
+                    <h3>Checkliste: Experiment Chemie</h3>
+                </div>
+            </div>
+            <p class="doc-desc">Leitfaden für chemische Praktika: Von Sicherheitsaspekten und Geräteaufbau bis zur exakten Protokollführung der Beobachtungen.</p>
+            <div class="doc-footer">
+                <span class="meta-info">PDF • Vorlage</span>
+                <a href="assets/Checklist%20Experiment%20Chemie.pdf" class="download-btn" target="_blank" download>
+                    <i class="fa-solid fa-download"></i> Herunterladen
+                </a>
+            </div>
+        </article>
+
+        <!-- DOKUMENT 3: Messunsicherheiten -->
+        <article class="doc-card" data-category="general" data-title="Messunsicherheiten Fehlerrechnung Messfehler Gauß Standardabweichung">
+            <div class="doc-header">
+                <div class="file-icon">
+                    <i class="fa-solid fa-file-pdf"></i>
+                </div>
+                <div class="doc-title-area">
+                    <span class="tag-badge tag-general">Allgemein</span>
+                    <h3>Messunsicherheiten</h3>
+                </div>
+            </div>
+            <p class="doc-desc">Grundlagen der Fehlerrechnung: Systematische vs. zufällige Fehler, Standardunsicherheit und Fehlerfortpflanzung verständlich erklärt.</p>
+            <div class="doc-footer">
+                <span class="meta-info">PDF • Leitfaden</span>
+                <a href="assets/Messunsicherheiten.pdf" class="download-btn" target="_blank" download>
+                    <i class="fa-solid fa-download"></i> Herunterladen
+                </a>
+            </div>
+        </article>
+
+        <!-- Platzhalter für "Keine Ergebnisse" -->
+        <div id="noResults" class="no-results">
+            <i class="fa-regular fa-folder-open"></i>
+            <p>Keine Dokumente gefunden, die deiner Suche entsprechen.</p>
+        </div>
+
+    </main>
+
+    <!-- JavaScript für Filterung und Live-Suche -->
+    <script>
+        const searchInput = document.getElementById('searchInput');
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.doc-card');
+        const noResults = document.getElementById('noResults');
+
+        let currentCategory = 'all';
+
+        function updateFilter() {
+            const query = searchInput.value.toLowerCase().trim();
+            let visibleCount = 0;
+
+            cards.forEach(card => {
+                const category = card.dataset.category;
+                const titleData = (card.dataset.title || '').toLowerCase();
+                const cardText = card.innerText.toLowerCase();
+
+                const matchesCategory = (currentCategory === 'all' || category === currentCategory);
+                const matchesSearch = (query === '' || titleData.includes(query) || cardText.includes(query));
+
+                if (matchesCategory && matchesSearch) {
+                    card.style.display = 'flex';
+                    visibleCount++;
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+
+            noResults.style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+
+        // Live-Suche
+        searchInput.addEventListener('input', updateFilter);
+
+        // Kategorie-Filter
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                filterButtons.forEach(btn => btn.classList.remove('active'));
+                button.classList.add('active');
+                currentCategory = button.dataset.filter;
+                updateFilter();
+            });
+        });
+    </script>
+
+</body>
+</html>
