@@ -3,21 +3,32 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Naturwissenschaften</title>
-    <!-- Wir nutzen Google Fonts für eine schöne, moderne Schriftart -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <!-- FontAwesome für schicke Icons -->
+    <title>Naturwissenschaften | Wissen Kompakt</title>
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <!-- FontAwesome für Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        /* Grundlegende Einstellungen */
         :root {
-            --bg-color: #0f172a;
+            --bg-color: #090d16;
+            --card-bg: rgba(22, 30, 49, 0.65);
+            --card-border: rgba(255, 255, 255, 0.08);
             --text-main: #f8fafc;
             --text-muted: #94a3b8;
-            --math-color: #3b82f6;
-            --physics-color: #8b5cf6;
-            --chemistry-color: #10b981;
+            
+            /* Fachfarben */
+            --math-color: #38bdf8;
+            --math-glow: rgba(56, 189, 248, 0.35);
+            
+            --physics-color: #a855f7;
+            --physics-glow: rgba(168, 85, 247, 0.35);
+            
+            --chemistry-color: #34d399;
+            --chemistry-glow: rgba(52, 211, 153, 0.35);
+
+            --docs-color: #f59e0b;
+            --docs-glow: rgba(245, 158, 11, 0.35);
         }
 
         * {
@@ -34,160 +45,359 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            background-image: 
-                radial-gradient(circle at 15% 50%, rgba(59, 130, 246, 0.15), transparent 25%),
-                radial-gradient(circle at 85% 30%, rgba(139, 92, 246, 0.15), transparent 25%);
+            overflow-x: hidden;
+            position: relative;
         }
 
-        /* Kopfbereich (Hero Section) */
+        /* Ambient Glow Blobs im Hintergrund */
+        .glow-orb {
+            position: absolute;
+            border-radius: 50%;
+            filter: blur(120px);
+            z-index: -1;
+            pointer-events: none;
+            opacity: 0.6;
+        }
+
+        .glow-1 {
+            width: 450px;
+            height: 450px;
+            background: radial-gradient(circle, rgba(56, 189, 248, 0.3), transparent 70%);
+            top: -100px;
+            left: -100px;
+        }
+
+        .glow-2 {
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(168, 85, 247, 0.25), transparent 70%);
+            top: 20%;
+            right: -150px;
+        }
+
+        .glow-3 {
+            width: 400px;
+            height: 400px;
+            background: radial-gradient(circle, rgba(52, 211, 153, 0.2), transparent 70%);
+            bottom: 50px;
+            left: 20%;
+        }
+
+        /* Kopfbereich / Hero Section */
         header {
             text-align: center;
-            margin-top: 4rem;
-            margin-bottom: 4rem;
+            margin-top: 4.5rem;
+            margin-bottom: 3rem;
             padding: 0 20px;
+            max-width: 850px;
+        }
+
+        .badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 0.85rem;
+            color: #cbd5e1;
+            margin-bottom: 20px;
+            backdrop-filter: blur(8px);
+        }
+
+        .badge i {
+            color: #38bdf8;
         }
 
         header h1 {
-            font-size: 3rem;
-            font-weight: 700;
-            margin-bottom: 10px;
-            background: linear-gradient(to right, #60a5fa, #a78bfa, #34d399);
+            font-size: clamp(2.4rem, 5vw, 3.8rem);
+            font-weight: 800;
+            line-height: 1.15;
+            margin-bottom: 16px;
+            letter-spacing: -0.02em;
+            background: linear-gradient(135deg, #ffffff 30%, #94a3b8 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
         }
 
         header p {
             color: var(--text-muted);
-            font-size: 1.2rem;
-            max-width: 600px;
-            margin: 0 auto;
+            font-size: 1.15rem;
+            line-height: 1.6;
+            margin: 0 auto 28px;
+            max-width: 620px;
+        }
+
+        /* Neuer Header-Action-Button */
+        .hero-actions {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .btn-docs-hero {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: rgba(245, 158, 11, 0.12);
+            color: #fbbf24;
+            border: 1px solid rgba(245, 158, 11, 0.3);
+            padding: 12px 26px;
+            border-radius: 50px;
+            font-size: 0.95rem;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-docs-hero:hover {
+            background: var(--docs-color);
+            color: #0f172a;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 25px var(--docs-glow);
         }
 
         /* Grid für die Fächer-Karten */
         .subjects-container {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 28px;
             width: 100%;
-            max-width: 1100px;
-            padding: 0 20px;
-            margin-bottom: 4rem;
+            max-width: 1240px;
+            padding: 0 24px;
+            margin-bottom: 5rem;
         }
 
-        /* Design der einzelnen Karten */
+        /* Design der Karten */
         .card {
-            background: rgba(30, 41, 59, 0.7);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 20px;
-            padding: 40px 30px;
+            background: var(--card-bg);
+            border: 1px solid var(--card-border);
+            border-radius: 24px;
+            padding: 38px 28px;
             text-align: center;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            backdrop-filter: blur(16px);
             display: flex;
             flex-direction: column;
             justify-content: space-between;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Subtiler Glanz-Effekt am oberen Rand */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
         }
 
         .card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
         }
 
-        .card.math:hover { box-shadow: 0 10px 30px rgba(59, 130, 246, 0.2); }
-        .card.physics:hover { box-shadow: 0 10px 30px rgba(139, 92, 246, 0.2); }
-        .card.chemistry:hover { box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2); }
-
-        .icon-wrapper {
-            font-size: 4rem;
-            margin-bottom: 20px;
+        .card.math:hover {
+            border-color: rgba(56, 189, 248, 0.4);
+            box-shadow: 0 20px 40px -15px var(--math-glow);
         }
 
-        .card.math .icon-wrapper { color: var(--math-color); }
-        .card.physics .icon-wrapper { color: var(--physics-color); }
-        .card.chemistry .icon-wrapper { color: var(--chemistry-color); }
+        .card.physics:hover {
+            border-color: rgba(168, 85, 247, 0.4);
+            box-shadow: 0 20px 40px -15px var(--physics-glow);
+        }
+
+        .card.chemistry:hover {
+            border-color: rgba(52, 211, 153, 0.4);
+            box-shadow: 0 20px 40px -15px var(--chemistry-glow);
+        }
+
+        .card.docs:hover {
+            border-color: rgba(245, 158, 11, 0.4);
+            box-shadow: 0 20px 40px -15px var(--docs-glow);
+        }
+
+        .icon-circle {
+            width: 80px;
+            height: 80px;
+            margin: 0 auto 24px;
+            border-radius: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 2.2rem;
+            transition: transform 0.4s ease;
+        }
+
+        .card:hover .icon-circle {
+            transform: scale(1.1) rotate(4deg);
+        }
+
+        .card.math .icon-circle {
+            background: rgba(56, 189, 248, 0.12);
+            color: var(--math-color);
+        }
+        .card.physics .icon-circle {
+            background: rgba(168, 85, 247, 0.12);
+            color: var(--physics-color);
+        }
+        .card.chemistry .icon-circle {
+            background: rgba(52, 211, 153, 0.12);
+            color: var(--chemistry-color);
+        }
+        .card.docs .icon-circle {
+            background: rgba(245, 158, 11, 0.12);
+            color: var(--docs-color);
+        }
 
         .card h2 {
-            font-size: 1.8rem;
-            margin-bottom: 15px;
+            font-size: 1.6rem;
+            font-weight: 700;
+            margin-bottom: 12px;
+            color: #fff;
         }
 
         .card p {
             color: var(--text-muted);
             font-size: 0.95rem;
-            margin-bottom: 30px;
+            margin-bottom: 32px;
             line-height: 1.6;
         }
 
-        /* Buttons */
+        /* Buttons in den Karten */
         .btn {
-            background-color: transparent;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            background: rgba(255, 255, 255, 0.04);
             color: white;
-            border: 2px solid;
-            padding: 12px 25px;
-            border-radius: 30px;
-            font-size: 1rem;
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            padding: 13px 20px;
+            border-radius: 14px;
+            font-size: 0.95rem;
             font-weight: 600;
+            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
             width: 100%;
         }
 
-        .card.math .btn { border-color: var(--math-color); }
-        .card.math .btn:hover { background-color: var(--math-color); }
-        
-        .card.physics .btn { border-color: var(--physics-color); }
-        .card.physics .btn:hover { background-color: var(--physics-color); }
-        
-        .card.chemistry .btn { border-color: var(--chemistry-color); }
-        .card.chemistry .btn:hover { background-color: var(--chemistry-color); }
+        .card.math .btn:hover {
+            background: var(--math-color);
+            border-color: var(--math-color);
+            color: #090d16;
+        }
+
+        .card.physics .btn:hover {
+            background: var(--physics-color);
+            border-color: var(--physics-color);
+            color: #ffffff;
+        }
+
+        .card.chemistry .btn:hover {
+            background: var(--chemistry-color);
+            border-color: var(--chemistry-color);
+            color: #090d16;
+        }
+
+        .card.docs .btn:hover {
+            background: var(--docs-color);
+            border-color: var(--docs-color);
+            color: #090d16;
+        }
     </style>
 </head>
 <body>
 
+    <!-- Ambient Glowing Background Lights -->
+    <div class="glow-orb glow-1"></div>
+    <div class="glow-orb glow-2"></div>
+    <div class="glow-orb glow-3"></div>
+
     <header>
+        <div class="badge">
+            <i class="fa-solid fa-graduation-cap"></i>
+            <span>Naturwissenschaften & MINT</span>
+        </div>
         <h1>Wissen Kompakt</h1>
-        <p>Dein digitales Begleitskript für die Schule. Wähle dein Fach aus, um zu den Lerninhalten und Übungsaufgaben zu gelangen.</p>
+        <p>Dein modernes Begleitskript für Schule und Abitur. Wähle dein Fach aus, um Zusammenfassungen, Herleitungen und Aufgaben abzurufen.</p>
+        
+        <!-- Zusätzlicher schneller Absprung -->
+        <div class="hero-actions">
+            <a href="Dokumente/dokumente.html" class="btn-docs-hero">
+                <i class="fa-solid fa-folder-open"></i>
+                Hilfreiche Dokumente & Vorlagen
+            </a>
+        </div>
     </header>
 
-    <div class="subjects-container">
-        <!-- MATHE KARTE -->
+    <main class="subjects-container">
+        <!-- MATHEMATIK -->
         <div class="card math">
             <div>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-calculator"></i>
+                <div class="icon-circle">
+                    <i class="fa-solid fa-square-root-variable"></i>
                 </div>
                 <h2>Mathematik</h2>
-                <p>Grundlagen für die Analysis, Lineare Algebra, Geometrie und Wahrscheinlichkeitsrechnung.</p>
+                <p>Analysis, Vektorrechnung, Lineare Algebra und Stochastik strukturiert erklärt.</p>
             </div>
-            <!-- Direkte Weiterleitung ohne Passwort -->
-            <button class="btn" onclick="window.location.href='Mathematik/mathe.html'">Zum Skript</button>
+            <a href="Mathematik/mathe.html" class="btn">
+                <span>Zum Skript</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
 
-        <!-- PHYSIK KARTE -->
+        <!-- PHYSIK -->
         <div class="card physics">
             <div>
-                <div class="icon-wrapper">
+                <div class="icon-circle">
                     <i class="fa-solid fa-atom"></i>
                 </div>
                 <h2>Physik</h2>
-                <p>Mechanik, Elektrodynamik, Thermodynamik, Atom- und Kernphysik.</p>
+                <p>Klassische Mechanik, Elektrodynamik, Wellenoptik, Quanten- und Kernphysik.</p>
             </div>
-            <!-- Direkte Weiterleitung ohne Passwort -->
-            <button class="btn" onclick="window.location.href='Physik/physik.html'">Zum Skript</button>
+            <a href="Physik/physik.html" class="btn">
+                <span>Zum Skript</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
 
-        <!-- CHEMIE KARTE -->
+        <!-- CHEMIE -->
         <div class="card chemistry">
             <div>
-                <div class="icon-wrapper">
-                    <i class="fa-solid fa-flask"></i>
+                <div class="icon-circle">
+                    <i class="fa-solid fa-flask-vial"></i>
                 </div>
                 <h2>Chemie</h2>
-                <p>Allgemeine und Anorganische Chemie, Organische Chemie, chemische Thermodynamik.</p>
+                <p>Periodensystem, Bindungslehre, Thermodynamik, Reaktionskinetik und Organik.</p>
             </div>
-            <!-- Direkte Weiterleitung ohne Passwort -->
-            <button class="btn" onclick="window.location.href='Chemie/chemie.html'">Zum Skript</button>
+            <a href="Chemie/chemie.html" class="btn">
+                <span>Zum Skript</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
         </div>
-    </div>
+
+        <!-- HILFREICHE DOKUMENTE -->
+        <div class="card docs">
+            <div>
+                <div class="icon-circle">
+                    <i class="fa-solid fa-file-lines"></i>
+                </div>
+                <h2>Dokumente</h2>
+                <p>Formelsammlungen, Periodensysteme, Operatorenlisten und nützliche Cheatsheets.</p>
+            </div>
+            <a href="Dokumente/dokumente.html" class="btn">
+                <span>Öffnen</span>
+                <i class="fa-solid fa-arrow-right"></i>
+            </a>
+        </div>
+    </main>
 
 </body>
 </html>
